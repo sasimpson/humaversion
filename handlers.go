@@ -12,7 +12,7 @@ type v1GetHandlerResponse struct {
 	Message string `json:"message"`
 }
 
-func (h v1Handler) v1GetHandler(ctx context.Context, in *struct{}) (*v1GetHandlerResponse, error) {
+func (h v1Handler) v1GetHandler(_ context.Context, _ *struct{}) (*v1GetHandlerResponse, error) {
 	return &v1GetHandlerResponse{Message: "neato v1"}, nil
 }
 
@@ -32,7 +32,7 @@ type v2GetHandlerResponse struct {
 	Message string `json:"message"`
 }
 
-func (h v2Handler) v2GetHandler(ctx context.Context, in *struct{}) (*v2GetHandlerResponse, error) {
+func (h v2Handler) v2GetHandler(_ context.Context, _ *struct{}) (*v2GetHandlerResponse, error) {
 	return &v2GetHandlerResponse{Message: "neato v2"}, nil
 }
 

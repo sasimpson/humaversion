@@ -4,6 +4,7 @@ import (
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/danielgtaylor/huma/v2/adapters/humamux"
 	"github.com/gorilla/mux"
+	"log"
 	"net/http"
 )
 
@@ -12,7 +13,7 @@ func main() {
 	v1Router := router.PathPrefix("/api/v1").Subrouter()
 	v1config := huma.DefaultConfig("Neato API", "0.0.1")
 	v1config.Servers = []*huma.Server{
-		&huma.Server{
+		{
 			URL: "http://localhost:5000/api/v1",
 		},
 	}
@@ -24,7 +25,7 @@ func main() {
 	v2Router := router.PathPrefix("/api/v2").Subrouter()
 	v2config := huma.DefaultConfig("Neato API", "0.0.2")
 	v2config.Servers = []*huma.Server{
-		&huma.Server{
+		{
 			URL: "http://localhost:5000/api/v2",
 		},
 	}
@@ -38,5 +39,7 @@ func main() {
 		Handler: router,
 	}
 
-	server.ListenAndServe()
+	if err := server.ListenAndServe(); err != nil {
+		log.Fatal(err)
+	}
 }
