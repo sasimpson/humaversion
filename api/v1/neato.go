@@ -9,17 +9,17 @@ type Handler struct{}
 
 type GetNeatoHandlerResponse struct {
 	Status int
-	Body   struct {
-		Message string `json:"message"`
-	}
+	Body   GetNeatoBody
 }
 
-func (h Handler) GetNeatoHandler(ctx context.Context, in *struct{}) (*GetNeatoHandlerResponse, error) {
+type GetNeatoBody struct {
+	Message string `json:"message" doc:"message to the user"`
+}
+
+func (h Handler) GetNeatoHandler(_ context.Context, _ *struct{}) (*GetNeatoHandlerResponse, error) {
 	return &GetNeatoHandlerResponse{
 		Status: http.StatusOK,
-		Body: struct {
-			Message string `json:"message"`
-		}{
+		Body: GetNeatoBody{
 			Message: "neato v1",
 		},
 	}, nil
