@@ -4,6 +4,8 @@ import (
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/danielgtaylor/huma/v2/adapters/humamux"
 	"github.com/gorilla/mux"
+	v1 "humaversion/api/v1"
+	v2 "humaversion/api/v2"
 	"log"
 	"net/http"
 )
@@ -19,7 +21,7 @@ func main() {
 	}
 	v1api := humamux.New(v1Router, v1config)
 
-	v1h := &v1Handler{}
+	v1h := &v1.Handler{}
 	huma.AutoRegister(v1api, v1h)
 
 	v2Router := router.PathPrefix("/api/v2").Subrouter()
@@ -31,7 +33,7 @@ func main() {
 	}
 	v2api := humamux.New(v2Router, v2config)
 
-	v2h := &v2Handler{}
+	v2h := &v2.Handler{}
 	huma.AutoRegister(v2api, v2h)
 
 	server := &http.Server{
