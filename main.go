@@ -16,7 +16,8 @@ func main() {
 	v1config := huma.DefaultConfig("Neato API", "0.0.1")
 	v1config.Servers = []*huma.Server{
 		{
-			URL: "http://localhost:5000/api/v1",
+			URL:         "http://localhost:5000/api/v1",
+			Description: "local",
 		},
 	}
 	v1api := humamux.New(v1Router, v1config)
@@ -28,7 +29,8 @@ func main() {
 	v2config := huma.DefaultConfig("Neato API", "0.0.2")
 	v2config.Servers = []*huma.Server{
 		{
-			URL: "http://localhost:5000/api/v2",
+			URL:         "http://localhost:5000/api/v2",
+			Description: "local",
 		},
 	}
 	v2api := humamux.New(v2Router, v2config)
