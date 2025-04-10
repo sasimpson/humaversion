@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	v1 "humaversion/api/v1"
 	v2 "humaversion/api/v2"
+	"log/slog"
 )
 
 func Service(router *mux.Router) {
@@ -21,6 +22,7 @@ func Service(router *mux.Router) {
 	}
 	v1api := humamux.New(v1Router, v1config)
 	v1h := &v1.Handler{}
+	slog.Info("initializing v1 api")
 	huma.AutoRegister(v1api, v1h)
 
 	// v2 of the api
@@ -34,6 +36,7 @@ func Service(router *mux.Router) {
 	}
 	v2api := humamux.New(v2Router, v2config)
 	v2h := &v2.Handler{}
+	slog.Info("initializing v2 api")
 	huma.AutoRegister(v2api, v2h)
 
 }
