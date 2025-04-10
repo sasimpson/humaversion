@@ -33,5 +33,6 @@ subrouter's allows this to work.
 Just an experiment, happy to take PRs if you think there is a better way. I'm happy to see what else can be done!
 
 ### To Do
-
-[ ] Generate OpenAPI Docs for validation, ie Pact.io
+- [ ] Generate OpenAPI Docs for validation, ie Pact.io
+- [ ] Tests
+- [ ] GitHub Actions to run validation and tests
