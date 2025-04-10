@@ -11,7 +11,7 @@ type Handler struct{}
 
 type GetNeatoHandlerResponse struct {
 	Status int
-	Body   v2.Neat `doc: "Neat"`
+	Body   v2.Neat
 }
 
 type GetNeatoBody struct {
