@@ -7,25 +7,22 @@ import (
 	"net/http"
 )
 
+// Handler for the v1 api
 type Handler struct{}
 
+// GetNeatoHandlerResponse is the response struct for our handler.
 type GetNeatoHandlerResponse struct {
 	Status int
 	Body   v1.Neat
 }
 
-type GetNeatoBody struct {
-	Message string `json:"message" doc:"message to the user"`
-}
-
-func (h Handler) GetNeatoHandler(ctx context.Context, _ *struct{}) (*GetNeatoHandlerResponse, error) {
-	var version int
+// GetNeatoHandler is a handler which demonstrates how huma handlers work
+func (h Handler) GetNeatoHandler(_ context.Context, _ *struct{}) (*GetNeatoHandlerResponse, error) {
 	id, err := uuid.NewUUID()
 	if err != nil {
 		return nil, err
 	}
 
-	ctx = context.WithValue(ctx, "version", version)
 	return &GetNeatoHandlerResponse{
 		Status: http.StatusOK,
 		Body: v1.Neat{

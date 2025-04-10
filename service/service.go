@@ -9,6 +9,8 @@ import (
 	"log/slog"
 )
 
+// Service sets up subrouters for each version of the api, and sets up those apis
+// the key is using the Servers config, without that, the doc links do not work and it's not great
 func Service(router *mux.Router) {
 
 	// v1 of the api

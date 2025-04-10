@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// RegisterRoutes gets run by the huma.AutoRegister function
 func (h Handler) RegisterRoutes(api huma.API) {
 	// GET /v1/neato
 	huma.Register(api, huma.Operation{
