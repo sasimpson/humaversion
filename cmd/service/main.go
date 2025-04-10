@@ -14,6 +14,17 @@ import (
 	"time"
 )
 
+func logMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		slog.Info(r.Method+" "+r.URL.Path,
+			"host", r.Host,
+			"method", r.Method,
+			"path", r.URL.Path,
+			"remote", r.RemoteAddr)
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	slog.SetDefault(logger)
@@ -21,6 +32,7 @@ func main() {
 	// setup handlers and routes
 	router := mux.NewRouter()
 	service.Service(router)
+	router.Use(logMiddleware)
 
 	// setup server
 	server := &http.Server{
