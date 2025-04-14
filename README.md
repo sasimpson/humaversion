@@ -20,8 +20,12 @@ when I want to advocate for Go in a more "enterprise" environment, this will hel
 
 ### Gorilla Mux
 I love this package. I was so happy when they pulled it out of archive mode and started working on it again. I briefly 
-considered trying to work on it. I would like to try to make this use the stdlib's http.ServeMux library. However, Gorilla Mux's
-subrouter's allows this to work. 
+considered trying to work on it. I would like to try to make this use the stdlib's http.ServeMux library. However, 
+Gorilla Mux's subrouter's allows this to work. 
+
+### Testify
+Another package I love because it simplifies the testing process.  I like to use it for mocking and assertions, makes 
+them simple and clean. It has low dependency overhead and is widely used.
 
 ## Organization
 - `/api` - The handlers and routes for each version of the api
