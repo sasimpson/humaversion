@@ -6,6 +6,5 @@ import "github.com/danielgtaylor/huma/v2"
 type Config struct {
 	Path      string
 	ApiConfig huma.Config
-	Servers   []*huma.Server
 	Handler   VersionHandler
 }
