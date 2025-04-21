@@ -49,10 +49,17 @@ func TestAddService(t *testing.T) {
 			name: "Test with valid config",
 			args: args{
 				config: Config{
-					Path:      "/api/v1",
-					ApiConfig: huma.DefaultConfig("Test API", "0.0.1"),
-					Servers:   []*huma.Server{{URL: "http://localhost:5000/api/v1"}},
-					Handler:   mockHandler{},
+					Path: "/api/v1",
+					ApiConfig: huma.Config{
+						OpenAPI: &huma.OpenAPI{
+							Info: &huma.Info{
+								Title:   "Test API",
+								Version: "1.0.0",
+							},
+							Servers: []*huma.Server{{URL: "http://localhost:5000/api/v1"}},
+						},
+					},
+					Handler: mockHandler{},
 				},
 			},
 			req: request{

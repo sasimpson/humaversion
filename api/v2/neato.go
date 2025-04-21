@@ -27,7 +27,7 @@ func (h Handler) GetNeatoHandler(_ context.Context, _ *struct{}) (*GetNeatoHandl
 		Body: v2.Neat{
 			Id:     id.String(),
 			Name:   "Neato API v2!",
-			MD5Sum: uuid.NewMD5(id, []byte("neato v1")).String(),
+			MD5Sum: uuid.NewMD5(id, []byte("neato v2")).String(),
 		},
 	}, nil
 }

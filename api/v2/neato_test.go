@@ -1,0 +1,54 @@
+package v2
+
+import (
+	"context"
+	"github.com/google/uuid"
+	"github.com/stretchr/testify/assert"
+	"humaversion/models/v2"
+	"net/http"
+	"testing"
+)
+
+func TestHandler_GetV2NeatoHandler(t *testing.T) {
+	type args struct {
+		in0 context.Context
+		in1 *struct{}
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    *GetNeatoHandlerResponse
+		wantErr bool
+	}{
+		{
+			name: "Valid Test",
+			args: args{
+				in0: context.Background(),
+				in1: nil,
+			},
+			want: &GetNeatoHandlerResponse{
+				Status: http.StatusOK,
+				Body: v2.Neat{
+					Id:     "",
+					Name:   "Neato API v2!",
+					MD5Sum: "",
+				},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			h := Handler{}
+			got, err := h.GetNeatoHandler(tt.args.in0, tt.args.in1)
+			assert.Nil(t, err)
+			assert.Equal(t, tt.want.Status, got.Status)
+			assert.Equal(t, tt.want.Body.Name, got.Body.Name)
+			assert.NotEmpty(t, got.Body.Id)
+			id, err := uuid.Parse(got.Body.Id)
+			assert.Nil(t, err)
+			assert.IsType(t, uuid.UUID{}, id)
+			sum := uuid.NewMD5(id, []byte("neato v2"))
+			assert.Equal(t, sum.String(), got.Body.MD5Sum)
+		})
+	}
+}
